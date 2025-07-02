@@ -89,87 +89,66 @@ $result = $conn->query($sql);
     <?php
     if (isset($_POST['export'])) {
       
-	            require_once('tcpdf/tcpdf.php');
+    require_once('tcpdf/tcpdf.php');
 
-		           
-		            class MYPDF extends TCPDF {
-				              
-				                public function Header() {
-							               
-							                $this->SetFont('helvetica', 'B', 12);
-									             
-									                $this->Cell(0, 10, 'User Details', 0, false, 'C', 0, '', 0, false, 'M', 'M');
-									               
-									                $this->Ln(10);
-											            }
+    class MYPDF extends TCPDF {
+    public function Header() {
+    $this->SetFont('helvetica', 'B', 12);
+    $this->Cell(0, 10, 'User Details', 0, false, 'C', 0, '', 0, false, 'M', 'M');
+    $this->Ln(10);
+    }
+public function Footer() {
+$this->SetY(-15);
+$this->SetFont('helvetica', 'I', 8);
+$this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . ' of ' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
+}
+}
+	    $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+	    $pdf->SetCreator(PDF_CREATOR);
+	    $pdf->SetAuthor('Your Name');
+	    $pdf->SetTitle('User Details');
+	    $pdf->SetSubject('User Details');
+	    $pdf->SetKeywords('TCPDF, PDF, user, details');
+            $pdf->AddPage();
+            $pdf->SetFont('helvetica', '', 10);
+            $sql = "SELECT * FROM ldap";
+         $result = $conn->query($sql);
+if ($result->num_rows > 0) {
 
-						           
-						            public function Footer() {
-								                   
-								                    $this->SetY(-15);
-										              
-										                    $this->SetFont('helvetica', 'I', 8);
-										                   
-										                    $this->Cell(0, 10, 'Page ' . $this->getAliasNumPage() . ' of ' . $this->getAliasNbPages(), 0, false, 'C', 0, '', 0, false, 'T', 'M');
-												                }
-						        }
+$pdf->Ln(10);
+$header = array('ID', 'Name', 'Employee No', 'Department', 'Faculty', 'Designation', 'Validity Date', 'Phone No', 'Mobile No', 'Email ID', 'Filename', 'Username', 'Password', 'SendMail');
+$pdf->SetFillColor(230, 230, 230);
+$pdf->SetFont('helvetica', 'B', 10);
+$w = array(15, 30, 30, 30, 30, 30, 25, 25, 25, 40, 30, 20, 20, 20);
+for ($i = 0; $i < count($header); ++$i) {
+$pdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
+}
+$pdf->Ln();
 
-		         
-		            $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
-		           
-		            $pdf->SetCreator(PDF_CREATOR);
-			            $pdf->SetAuthor('Your Name');
-			            $pdf->SetTitle('User Details');
-				            $pdf->SetSubject('User Details');
-				            $pdf->SetKeywords('TCPDF, PDF, user, details');
+while ($row = $result->fetch_assoc()) {
+$pdf->Cell($w[0], 6, $row['id'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[1], 6, $row['Name'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[2], 6, $row['Employee_No'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[3], 6, $row['Department'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[4], 6, $row['Faculty'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[5], 6, $row['Designation'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[6], 6, $row['Validity_Date'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[7], 6, $row['Phone_No'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[8], 6, $row['Mobile_No'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[9], 6, $row['Email_id'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[10], 6, $row['Filename'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[11], 6, $row['Username'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[12], 6, $row['Password'], 'LR', 0, 'C', 0);
+$pdf->Cell($w[13], 6, $row['SendMail'], 'LR', 0, 'C', 0);
+$pdf->Ln();
+}
+$pdf->Cell(array_sum($w), 0, '', 'T');
+} else {
+$pdf->Cell(0, 10, 'No records found', 0, false, 'C', 0, '', 0, false, 'T', 'M');
+}
 
-					           
-					            $pdf->AddPage();
-
-					            
-					            $pdf->SetFont('helvetica', '', 10);
-
-						            
-						            $sql = "SELECT * FROM ldap";
-						            $result = $conn->query($sql);
-							            if ($result->num_rows > 0) {
-									                
-									                $pdf->Ln(10);
-											            $header = array('ID', 'Name', 'Employee No', 'Department', 'Faculty', 'Designation', 'Validity Date', 'Phone No', 'Mobile No', 'Email ID', 'Filename', 'Username', 'Password', 'SendMail');
-											            $pdf->SetFillColor(230, 230, 230);
-												                $pdf->SetFont('helvetica', 'B', 10);
-												                $w = array(15, 30, 30, 30, 30, 30, 25, 25, 25, 40, 30, 20, 20, 20);
-														            for ($i = 0; $i < count($header); ++$i) {
-																                    $pdf->Cell($w[$i], 7, $header[$i], 1, 0, 'C', 1);
-																		                }
-														            $pdf->Ln();
-
-														           
-														            while ($row = $result->fetch_assoc()) {
-																                    $pdf->Cell($w[0], 6, $row['id'], 'LR', 0, 'C', 0);
-																		                    $pdf->Cell($w[1], 6, $row['Name'], 'LR', 0, 'C', 0);
-																		                    $pdf->Cell($w[2], 6, $row['Employee_No'], 'LR', 0, 'C', 0);
-																				                    $pdf->Cell($w[3], 6, $row['Department'], 'LR', 0, 'C', 0);
-																				                    $pdf->Cell($w[4], 6, $row['Faculty'], 'LR', 0, 'C', 0);
-																						                    $pdf->Cell($w[5], 6, $row['Designation'], 'LR', 0, 'C', 0);
-																						                    $pdf->Cell($w[6], 6, $row['Validity_Date'], 'LR', 0, 'C', 0);
-																								                    $pdf->Cell($w[7], 6, $row['Phone_No'], 'LR', 0, 'C', 0);
-																								                    $pdf->Cell($w[8], 6, $row['Mobile_No'], 'LR', 0, 'C', 0);
-																										                    $pdf->Cell($w[9], 6, $row['Email_id'], 'LR', 0, 'C', 0);
-																										                    $pdf->Cell($w[10], 6, $row['Filename'], 'LR', 0, 'C', 0);
-																												                    $pdf->Cell($w[11], 6, $row['Username'], 'LR', 0, 'C', 0);
-																												                    $pdf->Cell($w[12], 6, $row['Password'], 'LR', 0, 'C', 0);
-																														                    $pdf->Cell($w[13], 6, $row['SendMail'], 'LR', 0, 'C', 0);
-																														                    $pdf->Ln();
-																																                }
-															                $pdf->Cell(array_sum($w), 0, '', 'T');
-															            } else {
-																	                $pdf->Cell(0, 10, 'No records found', 0, false, 'C', 0, '', 0, false, 'T', 'M');
-																			        }
-
-    
-							            $pdf->Output('user_details.pdf', 'D');}
-							        ?>
+$pdf->Output('user_details.pdf', 'D');}
+?>
 </body>
 </html>
