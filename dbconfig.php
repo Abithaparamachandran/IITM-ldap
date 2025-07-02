@@ -1,11 +1,9 @@
 <?php
 
-$servername = "localhost";
-
-$username = "root";
-
-$password = "Password1";
-$dbname = "llddaapp";
+$servername = "***";
+$username = "***";
+$password = "***";
+$dbname = "***";
 
 
 $conn = new mysqli($servername, $username, $password, $dbname);
