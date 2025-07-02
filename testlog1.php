@@ -78,13 +78,13 @@ if (isset($_GET['key']) && (strlen($_GET['key']) == 32))
 
 // config
 
-$ldapserver = 'eldap.iitm.ac.in';
+$ldapserver = '****';
 
-$ldapuser   = 'cn=oaabind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in';
+$ldapuser   = '****';
 
-$ldappass   = 'D#4k%e5M*';
+$ldappass   = '***';
 
-$ldaptree   = "DC=ldap,DC=iitm,DC=ac,DC=in";
+$ldaptree   = "***";
 
 
 
@@ -190,13 +190,13 @@ if($search){
 
 
 
-            $servername = "localhost";
+            $servername = "***";
 
-$username = "root";
+$username = "***";
 
-$password = "Password1";
+$password = "***";
 
-$dbname = "llddaapp";
+$dbname = "***";
 
 
 
@@ -443,11 +443,11 @@ else
 ?>
 <div>
 <?php
-	//echo "am here";
-$servername = "localhost";
-$username = "root";
-$password = "Password1";
-$dbname = "llddaapp";
+	
+$servername = "***";
+$username = "***";
+$password = "***";
+$dbname = "***";
 
 $con = mysqli_connect($servername,$username,$password,$dbname);
 if($con){
