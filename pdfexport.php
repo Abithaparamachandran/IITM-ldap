@@ -2,7 +2,7 @@
 require_once('TCPDF/tcpdf.php');
 
 if(isset($_POST["export"])) {
-	    $mysqli = new mysqli("localhost", "root", "Password1", "llddaapp");
+	    $mysqli = new mysqli("***", "***", "***", "***");
 	        if ($mysqli->connect_errno) {
 			        echo "Failed to connect to MySQL: " . $mysqli->connect_error;
 				        exit();
