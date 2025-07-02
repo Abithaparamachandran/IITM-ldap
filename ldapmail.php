@@ -1,6 +1,5 @@
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <style type="text/css">
@@ -18,10 +17,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 ob_start();
 if(isset($_POST['submit']))
 {
-   $servername="localhost";
-   $username="root";
-   $password="Password1";
-   $dbname="llddaapp";
+   $servername="***";
+   $username="***";
+   $password="***";
+   $dbname="***";
    $con=mysqli_connect($servername,$username,$password,$dbname);
    if(!$con)
 	   {
@@ -156,10 +155,7 @@ if($image_width <= 600 && $image_height<= 500)
 		else echo '';
        }
 		
-		
-		
-		
-		}
+	}
 	
 	}
 	
@@ -176,15 +172,15 @@ if(empty($error))
 {
 	//echo "error free";
        // echo "empty";
-	$servername="localhost";
-	$username="root";
-	$password="Password1";
-	$dbname="llddaapp";
+	$servername="***";
+	$username="***";
+	$password="***";
+	$dbname="***";
 	$con=mysqli_connect($servername,$username,$password,$dbname);
         
 	if(mysqli_num_rows($result_verify_mobno) ==0)
 	{
-	$query_verify_mobno = "SELECT * FROM ldap WHERE Mobile_No ='$mobileno'";
+	$query_verify_mobno = "SELECT * FROM *** WHERE Mobile_No ='$mobileno'";
         $result_verify_mobno = mysqli_query($con, $query_verify_mobno);
 	if(!$result_verify_mobno){
 		echo'mobile number already exists';
@@ -205,7 +201,7 @@ if(empty($error))
 
 	      if (mysqli_num_rows($result_verify_empno) == 0)
 	      {
-		      $query_verify_empno="SELECT * FROM ldap WHERE Employee_No='$employee'";
+		      $query_verify_empno="SELECT * FROM *** WHERE Employee_No='$employee'";
 		      $result_verify_empno = mysqli_query($con, $query_verify_empno);
 		      if (!$result_verify_empno)
 			       echo 'Employee Number already exists';
@@ -215,7 +211,7 @@ if(empty($error))
 
 $regdate = date('Y-m-d');
 		$activation = md5(uniqid(rand(), true));
-$query_insert_user ="INSERT INTO ldap(Name,Employee_No,Department,Faculty,Designation,facultymail,Validity_Date,Phone_No,Mobile_No,Email_id,uid,registration_date,activation,Filename) VALUES ('$name','$employee','$dept','$faculty','$designation','$facmail','$date','$phoneno','$mobileno','$email',' ','$regdate','$activation','$newname')";
+$query_insert_user ="INSERT INTO ***(Name,Employee_No,Department,Faculty,Designation,facultymail,Validity_Date,Phone_No,Mobile_No,Email_id,uid,registration_date,activation,Filename) VALUES ('$name','$employee','$dept','$faculty','$designation','$facmail','$date','$phoneno','$mobileno','$email',' ','$regdate','$activation','$newname')";
 
 $result_insert_user = mysqli_query($con, $query_insert_user);
 						if (!$result_insert_user) 
@@ -230,20 +226,20 @@ $mail = new PHPMailer();
 		$mail->IsSMTP(); // send via SMTP
               //  $mail->SMTPDebug = 1;
                 $mail->SMTPAuth = TRUE;
-                $mail->SMTPSecure = "tls";
+                $mail->SMTPSecure = "**";
        	      // $mail->SMTPSecure = "ssl";
 	        $mail->Port       = 587;
-                $mail->Username='ccprj05@iitm.ac.in';
-		$mail->Password='Abi27%tha';
-		$mail->Host     = "smtp.iitm.ac.in";
-                $mail->Mailer   = "smtp";
+                $mail->Username='***';
+		$mail->Password='***';
+		$mail->Host     = "***";
+                $mail->Mailer   = "***";
 		$mail->Subject  = 'Approval for ldap';
 		$html = true;
 		$mail->IsHTML($html);
 		$message = '<br>The following user registered for Internet Access and it is pending for your approval<br></br>Name:'.$name.'<br>Department:'.$dept.'<br>Employee no:'.$employee.'<br>Mobile:'.$mobileno.'<br>Emailid:'.$email.'<br><br>Your Project Staff has requested for Internet Access<br><br>';
 		$message .= "<a href='https://web.iitm.ac.in/ldaponline/test.php?email=$email&key=$activation'>Click here to approve this registration</a>";
 		$mail->Body = $message;
-		$from = 'eservices@iitm.ac.in';
+		$from = '***';
 		$fromName = 'Eservices';
 		if($designation=="Trainee" || $designation=="Summer Internship" || $designation=="Others" )
 {
