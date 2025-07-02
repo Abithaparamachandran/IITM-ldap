@@ -35,12 +35,9 @@ if (isset($_GET['key']) && (strlen($_GET['key']) == 32))
  {
  $key = $_GET['key'];
 }
- // $_SESSION['username']=$_POST['username'];
 
-//        $app_user = "cn=Admin,dc=ldap,dc=iitm,dc=ac,dc=in";
-//        $app_pass = "00o00opio0+$0";
-$app_user = "cn=ebind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in";
-$app_pass = "pgSiitmcc";
+$app_user = "***";
+$app_pass = "***";
 
 
         $username = $_POST['username'];
@@ -49,7 +46,7 @@ $app_pass = "pgSiitmcc";
       //  $userdn = 'iitm' . "\\" . $username;
 
         // Connect to LDAP service
-        $conn_status = ldap_connect('eldap.iitm.ac.in', '389');
+        $conn_status = ldap_connect('***', '389');
         if ($conn_status === FALSE) {
             die("Couldn't connect to LDAP service");
 
