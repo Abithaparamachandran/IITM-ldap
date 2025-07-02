@@ -283,10 +283,10 @@ include("modal.php");
 <option value=""> Select Department </option>
 <?php
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "Password1";
-  $databasename = "llddaapp";
+  $servername = "***";
+  $username = "***";
+  $password = "***";
+  $databasename = "***";
 
   // CREATE CONNECTION
   $conn = new mysqli($servername,
