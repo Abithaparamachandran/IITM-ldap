@@ -26,10 +26,10 @@
 use PHPMailer\PHPMailer\PHPMailer;
 ob_start();
 
-$servername="localhost";
-$username="root";
-$password="Password1";
-$dbname="llddaapp";
+$servername="***";
+$username="***";
+$password="***";
+$dbname="***";
 $con = @mysqli_connect($servernmae, $username, $password,$dbname);
 if(!$con){
 	echo"not connected";
@@ -55,18 +55,14 @@ if (isset($_POST['key']) && (strlen($_POST['key']) == 32))
 if (isset($email) && isset($key)) {
 //echo "in inner loop";
 $uidnum = $_POST['uidno'];
-//echo"$uidnum";
- // Update the database to set the "activation" field to null
-//mysqli_connect('10.24.8.213', 'root', 'Password1') or die(mysqli_error());
-//mysqli_select_db('llddaapp') or die(mysqli_error()); 
-$servername = "localhost";
-$username = "root";
-$password = "Password1";
-$dbname = "llddaapp";
+$servername = "***";
+$username = "***";
+$password = "***";
+$dbname = "****";
 
 $con = mysqli_connect($servername,$username,$password,$dbname);
 
-$list = mysqli_query($con,"select * from ldap where  Email_id='$email' and activation='$key'");
+$list = mysqli_query($con,"select * from *** where  Email_id='$email' and activation='$key'");
         while ($row = mysqli_fetch_assoc($list)) {
 	//print_r($row);
 	  $name=$row['Name'];
@@ -82,7 +78,7 @@ $list = mysqli_query($con,"select * from ldap where  Email_id='$email' and activ
 
 }
 //echo "$uidnum";
-$query_activate_account = "UPDATE ldap SET activation='NULL', uid='$uidnum' WHERE(Email_id ='$email' AND activation='$key')LIMIT 1";
+$query_activate_account = "UPDATE *** SET activation='NULL', uid='$uidnum' WHERE(Email_id ='$email' AND activation='$key')LIMIT 1";
 //echo "$query_activate_account";
 
 
@@ -103,32 +99,19 @@ $mail = new PHPMailer();
                 $mail->SMTPSecure = "tls";
                //$mail->SMTPSecure = "ssl";
                 $mail->Port       = 587;
-                $mail->Username='ccprj05@iitm.ac.in';
-                $mail->Password='Abi27%tha';
-                $mail->Host     = "smtp.iitm.ac.in";
+                $mail->Username='***';
+                $mail->Password='****';
+                $mail->Host     = "***";
                 $mail->Mailer   = "smtp";
                 $mail->Subject  = 'Application for Ldap Account approved by Project Co-ordinator';
                 $html = true;
                 $mail->IsHTML($html);
 
-/**$mail = new PHPMailer();
-$mail->isSMTP();
-$mail->Host = 'smtp.gmail.com';
-$mail->SMTPAuth = true;
-$mail->SMTPSecure = "ssl";
-$mail->Port = 465;
-$mail->Username = 'abithapram@gmail.com';
-$mail->Password = 'abi27%tha';
-$mail->Subject = 'Application for Ldap Account approved by Project Co-ordinator';
-$html = true;
-$mail->IsHTML($html);**/
-
-
         $message='<br>Ldap Account Registration approved by Project Co-ordinator for this User<br></br> Name:'.$name.'<br>Employee No:'.$employee.'<br>Department:'.$department.'<br>Faculty:'.$facul.'<br>Designation:'.$designation.'<br>Validity Date:'.$valid.'<br>Phone no(office/Lab):'.$phoneno.'<br>Mobile no:'.$mobileno.'<br>Email ID:'.$email.'<br>UID Number:'.$uidnum.'<br>';
 
         //echo"$message";
         $mail->Body = $message;
-        $from="eservices@iitm.ac.in";
+        $from="****";
          $fromName = 'Eservices';
         $mail ->AddAddress('sanand@iitm.ac.in');
         $mail->From = $from;
