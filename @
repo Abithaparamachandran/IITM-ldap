@@ -1,0 +1,84 @@
+<?php
+// config
+$ldapserver = '10.24.1.50';
+$ldapuser   = 'cn=oaabind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in';
+$ldappass   = 'D#4k%e5M*';
+//$ldapuser   = 'cn=oaabind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in';
+//$ldappass   = 'D#4k%e5M*';
+$ldaptree   = "DC=ldap,DC=iitm,DC=ac,DC=in";
+$ldapuname="ccprj05";
+$ldappwd="abi27%tha";
+// connect
+$ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
+ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
+
+if($ldapconn) {
+    // binding to ldap server
+    //$ldapbind = ldap_bind($ldapconn, $ldapuser, $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
+
+        $ldapbind = ldap_bind($ldapconn, $ldapuser , $ldappass) or die ("Error trying to bind: ".ldap_error($ldapconn));
+
+
+    // verify binding
+    if ($ldapbind) {
+       echo "LDAP bind successful...".PHP_EOL;
+
+$dn = "ou=ma,ou=faculty,ou=employee,dc=ldap,dc=iitm,dc=ac,dc=in";
+//$justthese = array("ou","dn","mail");
+$filter="(objectClass=organizationalunit)";
+$sr = ldap_search($ldapconn, $dn, "ou=*");
+
+$info = ldap_get_entries($ldapconn, $sr);
+
+// List OUs
+for ($i=0; $i < $info["count"]; $i++) {
+	//echo $info[$i]["mail"][0] ."<br>";
+$dnn=$info[$i]["dn"];
+//echo $dnn."<br>";
+//$filterr = "cn=*"; 
+$filterr="cn=*";
+//$justhesee = array("dn");
+$srr = ldap_search($ldapconn, $dnn, $filterr);
+$infoo = ldap_get_entries($ldapconn, $srr);
+
+for ($i=0; $i < $infoo["count"]; $i++) {
+	//print_r($infoo);
+	@$uname[] = $infoo[$i]["$cn"][0];
+	//echo $infoo[$i]["dn"];
+	//echo $infoo;
+@$mailid[]=$infoo[$i]["mail"][0];	
+   // echo $infoo[$i]["mail"][0]."<br>";
+    
+   // echo $infoo[$i]["mail"][0] ."<br>";
+$dd = array_combine($mailid,$uname);
+
+                                                }
+                $user=array_unique($dd);
+//                $user=array($name);
+echo $user;
+
+                        ?>
+<?php
+                        foreach($user as $k => $user)
+                        {
+                        $user="$user"." "."[$k]";
+                        ?>
+                        <!--value="'.$row["public_desc"].'"-->
+                        <?php echo '<option value="'.$user.'">'.$user.'</option>'; ?>
+                        <?php
+                        }
+                        }
+
+    }
+// SHOW ALL DATA
+   /**     echo '<h1>Dump all data</h1><pre>';
+        print_r($infoo);
+echo '</pre>';**/
+//break;
+        else {
+        echo "LDAP bind not successful...<br /><br />";
+    }
+
+    }
+
+?>

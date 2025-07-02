@@ -1,0 +1,40 @@
+<?php
+if(isset($_POST['submit']))
+{
+$servername="localhost";
+$username = "root";
+$password = "Password1";
+$dbname = "ldapdatabase";
+
+$con = mysqli_connect($servername,$username,$password,$dbname);
+
+if($con){
+         echo "connected";
+}else{
+      echo "not connect";
+}
+
+$name=$_POST['name'];
+$employee=$_POST['empno'];
+$depart=$_POST['depart'];
+$faculty=$_POST['fac'];
+$valid=$_POST['valid'];
+$phone=$_POST['phno'];
+$mobile=$_POST['mobno'];
+$email=$_POST['email'];
+$upload=$filename;
+$isql="INSERT INTO ldaptable(Name,Employee_no,Department,Faculty,validity_date,Phone_no,mobile_no,Email_id,Upload) VALUES ('$name','$employee','$depart','$faculty','$valid','$phone','$mobile','$email','$upload')";
+echo $sql;
+
+
+$result=mysqli_query($con,$sql);
+if($result==true){
+               echo "Data added successfully.";
+echo "<br><a href='index.php'>View Result";
+}
+}
+
+
+
+
+?>
