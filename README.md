@@ -36,7 +36,7 @@ ldap/
 ## 🔗 Live Demo
 
 You can view the live version hosted at IIT Madras here:  
-🌐 [https://web.iitm.ac.in/ldaponline](https://web.iitm.ac.in/ldaponline)
+🌐 [https://web.iitm.ac.in/ldaponline/](https://web.iitm.ac.in/ldaponline/)
 
 ---
 - 
