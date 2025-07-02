@@ -66,10 +66,10 @@ if ($_GET['dept_1'] != "select") {
         }
     // Case 3: All other departments
     } else {
-        $servername = "localhost";
-        $username = "root";
-        $password = "Password1";
-        $databasename = "llddaapp";
+        $servername = "***";
+        $username = "***";
+        $password = "***";
+        $databasename = "***";
         $conn = new mysqli($servername, $username, $password, $databasename);
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -82,14 +82,14 @@ if ($_GET['dept_1'] != "select") {
             "Ocean Engineering", "Physics"
         ];
         if (in_array($name, $ldap_depts)) {
-            $queryy = "SELECT departmentcode FROM dept_1 WHERE departmentname='$name'";
+            $queryy = "SELECT departmentcode FROM *** WHERE departmentname='$name'";
             $result1 = $conn->query($queryy);
             while ($row1 = mysqli_fetch_assoc($result1)) {
                 $code = $row1['departmentcode'];
             }
-            $ldapserver = 'eldap.iitm.ac.in';
-            $ldapuser   = 'cn=ebind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in';
-            $ldappass   = 'pgSiitmcc';
+            $ldapserver = '***';
+            $ldapuser   = '***';
+            $ldappass   = '***';
             $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
             ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
             if ($ldapconn) {
@@ -114,8 +114,8 @@ if ($_GET['dept_1'] != "select") {
                 }
             }
         } else {
-            // Fallback to dept head from depthead table
-            $queryy2 = "SELECT Head FROM depthead WHERE Dept='$name'";
+            // Fallback to dept head from ** table
+            $queryy2 = "SELECT Head FROM *** WHERE Dept='$name'";
             $result2 = $conn->query($queryy2);
             while ($row2 = mysqli_fetch_assoc($result2)) {
                 $user = $row2['Head'];
