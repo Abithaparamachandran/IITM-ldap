@@ -38,13 +38,10 @@ if (isset($_GET['key']) && (strlen($_GET['key']) == 32))
  $key = $_GET['key'];
 }
 // config
- $ldapserver = 'eldap.iitm.ac.in';
- $ldapuser   = 'cn=ebind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in';
- $ldappass   = 'pgSiitmcc';
-//$ldapserver = 'eldap.iitm.ac.in';
-//$ldapuser   = 'cn=oaabind,ou=bind,dc=ldap,dc=iitm,dc=ac,dc=in';
-//$ldappass   = 'D#4k%e5M*';
-$ldaptree   = "DC=ldap,DC=iitm,DC=ac,DC=in";
+ $ldapserver = '***';
+ $ldapuser   = '***';
+ $ldappass   = '***';
+$ldaptree   = "***";
 // connect
 $ldapconn = ldap_connect($ldapserver) or die("Could not connect to LDAP server.");
 ldap_set_option($ldapconn, LDAP_OPT_PROTOCOL_VERSION, 3);
@@ -88,10 +85,10 @@ if($bind=@ldap_bind($ldapconn, $userdn, $ldappwd))
 {
   $_SESSION['user'] = $ldapuname;
  // echo "bind true";
-$servername = "localhost";
-$username = "root";
-$password = "Password1";
-$dbname = "llddaapp";
+$servername = "***";
+$username = "***";
+$password = "***";
+$dbname = "***";
 $con = mysqli_connect($servername,$username,$password,$dbname);
 if($con){
  // echo "connected";
@@ -99,7 +96,7 @@ if($con){
  // echo "not connect";
 }
 // Perform query
-$result = mysqli_query($con, "select * from ldap where email_id='$email' and activation='$key'");
+$result = mysqli_query($con, "select * from *** where email_id='$email' and activation='$key'");
 $list = mysqli_query($con,"select * from ldap where email_id='$email' and activation='$key'");
 while ($row = mysqli_fetch_assoc($result)) {
  //print_r($row);
