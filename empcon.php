@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost"; /* Host name */
-$user = "root"; /* User */
-$password = "Password1"; /* Password */
-$dbname = "llddaapp"; /* Database name */
+$host = "***"; /* Host name */
+$user = "***"; /* User */
+$password = "***"; /* Password */
+$dbname = "***"; /* Database name */
 
 $con = mysqli_connect($host, $user, $password,$dbname);
 // Check connection
