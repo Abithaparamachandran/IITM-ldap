@@ -31,6 +31,14 @@ ldap/
 - Access to LDAP server
 - PHPMailer (already included in `vendor/` if used)
 - Internet access (for some JS/CDN features)
+
+
+## 🔗 Live Demo
+
+You can view the live version hosted at IIT Madras here:  
+🌐 [https://web.iitm.ac.in/ldaponline](https://web.iitm.ac.in/ldaponline)
+
+---
 - 
 ## 🙋‍♀️ Author
 
