@@ -40,30 +40,29 @@
             </thead>
             <tbody>
                 <?php
-                $mysqli = new mysqli("localhost", "root", "Password1", "llddaapp");
+                $mysqli = new mysqli("***", "***", "***", "***");
                 if ($mysqli->connect_errno) {
                     echo "Failed to connect to MySQL: " . $mysqli->connect_error;
                     exit();
                 }
 
-		                $query = "SELECT * FROM ldap";
+		                $query = "SELECT * FROM ***";
 		                if ($result = $mysqli->query($query)) {
 					                    while ($row = $result->fetch_assoc()) {
-								                            echo "<tr>";
-											                            echo "<td>".$row['id']."</td>";
-											                            echo "<td>".$row['Name']."</td>";
-														                            echo "<td>".$row['Employee_No']."</td>";
-														                            echo "<td>".$row['Department']."</td>";
-																	                            echo "<td>".$row['Faculty']."</td>";
-																	                            echo "<td>".$row['Designation']."</td>";
-																				                            echo "<td>".$row['Validity_Date']."</td>";
-																				                            echo "<td>".$row['Phone_No']."</td>";
-																							                            echo "<td>".$row['Mobile_No']."</td>";
-																							                            echo "<td>".$row['Email_id']."</td>";
-																										                            echo "<td>".$row['Filename']."</td>";
-																										                            echo "</tr>";
-																													                        }
-							                        $result->free();
+							     echo "<tr>";
+							     echo "<td>".$row['id']."</td>";
+							     echo "<td>".$row['Name']."</td>";
+							     echo "<td>".$row['Employee_No']."</td>";
+							     echo "<td>".$row['Department']."</td>";
+							     echo "<td>".$row['Faculty']."</td>";
+							     echo "<td>".$row['Designation']."</td>";
+					                     echo "<td>".$row['Validity_Date']."</td>";
+							     echo "<td>".$row['Phone_No']."</td>";
+							     echo "<td>".$row['Mobile_No']."</td>";
+						             echo "<td>".$row['Email_id']."</td>";
+							     echo "<td>".$row['Filename']."</td>";
+							     echo "</tr>";
+							  $result->free();
 							                    }
 				                ?>
             </tbody>
