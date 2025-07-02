@@ -54,9 +54,9 @@
 if(isset($_POST["submit"])) {
 	  $uname = $_POST["uname"];
 	    $pass = $_POST["pass"];
-	    if($uname == "eservices" && $pass == "magicalsun23") {
+	    if($uname == "***" && $pass == "***") {
 		        header('location: ldapusers.php');
-			  } elseif($uname == "abitha" && $pass == "abitha") {
+			  } elseif($uname == "***" && $pass == "***") {
 				      header('location: ldapusers.php');
 				        } else {
 						    echo '<script>alert("Invalid username/password")</script>';
